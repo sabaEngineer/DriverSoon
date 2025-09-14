@@ -7,7 +7,7 @@ export class HandleNewSubscriberService {
 
   private buildKeyboard() {
     const buttons = ExamCenterChannels.map((channel) => ({
-      text: `📣 ჩაერთე • ${channel.examCenterName}`,
+      text: `${channel.examCenterName}`,
       url: channel.joinUrl,
     }));
 
