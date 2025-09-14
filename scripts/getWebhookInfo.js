@@ -1,4 +1,13 @@
-// setWebhook.js (CommonJS)
+// Fetches Telegram getWebhookInfo and prints it.
+//
+// Usage:
+//   node getWebhookInfo.js
+//
+// Requires in .env (at project root):
+//   BOT_TOKEN=123456:ABC...
+//
+// This script auto-loads ../.env (root) or ./.env
+
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const fs = require('fs');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -13,21 +22,13 @@ try {
     : fs.existsSync(cwdEnv)
       ? cwdEnv
       : null;
-  if (envPath) {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    require('dotenv').config({ path: envPath });
-    console.log(`🔑 Loaded env from ${envPath}`);
-  }
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  if (envPath) require('dotenv').config({ path: envPath });
 } catch (_) {}
 
-const { BOT_TOKEN, WEBHOOK_URL, WEBHOOK_SECRET } = process.env;
-
+const { BOT_TOKEN } = process.env;
 if (!BOT_TOKEN) {
   console.error('❌ BOT_TOKEN env var is required');
-  process.exit(1);
-}
-if (!WEBHOOK_URL || !/^https:\/\//.test(WEBHOOK_URL)) {
-  console.error('❌ WEBHOOK_URL must be a valid HTTPS URL');
   process.exit(1);
 }
 
@@ -37,23 +38,17 @@ const API = `https://api.telegram.org/bot${BOT_TOKEN}`;
   try {
     const _fetch =
       global.fetch || (await import('node-fetch')).then((m) => m.default);
-    const body = {
-      url: WEBHOOK_URL,
-      drop_pending_updates: true, // always true as requested
-      ...(WEBHOOK_SECRET ? { secret_token: WEBHOOK_SECRET } : {}),
-    };
-
-    const res = await _fetch(`${API}/setWebhook`, {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify(body),
-    });
+    const res = await _fetch(`${API}/getWebhookInfo`, { method: 'GET' });
     const json = await res.json();
+
     if (!json.ok) {
-      console.error('❌ setWebhook failed:\n', JSON.stringify(json, null, 2));
+      console.error(
+        '❌ getWebhookInfo failed:\n',
+        JSON.stringify(json, null, 2),
+      );
       process.exit(1);
     }
-    console.log('✅ setWebhook OK');
+
     console.log(JSON.stringify(json.result, null, 2));
   } catch (err) {
     console.error('❌ Error:', err);
