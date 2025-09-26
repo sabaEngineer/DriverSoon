@@ -80,10 +80,10 @@ export class CoreService {
       }
     }
 
-    message +=
-      '\n დაჯავშნე გამოცდა - https://my.sa.gov.ge/drivinglicenses/practicalexam';
+    // message +=
+    //   '\n დაჯავშნე გამოცდა - https://my.sa.gov.ge/drivinglicenses/practicalexam';
 
-    message += '\n წარმარებები 💚🚙';
+    message += '\n წარმატებები 💚🚙';
 
     return message;
   }
