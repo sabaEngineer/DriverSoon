@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { ExamCenterChannels } from './enums';
+import { ExamCenterChannels } from '../enums';
 
 @Injectable()
 export class HandleNewSubscriberService {
@@ -22,7 +22,7 @@ export class HandleNewSubscriberService {
   public suggestAvailableChannels(chatId: number) {
     return {
       method: 'sendMessage',
-      text: 'აირჩიე ქალაქის არხ(ებ)ი და ჩაერთე ↓',
+      text: 'გამარჯობა, აირჩიეთ ქალაქი და შეუერთდით ჩენელს, სადაც ავტომატურად მიიღებთ შეტყობინებას, როგორც კი გაიხსნება საგამოცდო დროები. წარმატებები! 💚',
       chat_id: chatId,
       reply_markup: this.buildKeyboard(),
       disable_web_page_preview: true,
