@@ -17,7 +17,7 @@ export const ExamCentersGeorgianNames: Record<ExamCenterNames, string> = {
   [ExamCenterNames.Gori]: 'გორი',
   [ExamCenterNames.Ozurgeti]: 'ოზურგეთი',
   [ExamCenterNames.Kutaisi]: 'ქუთაისი',
-  [ExamCenterNames.Akhaltsikhe]: 'ახალციხი',
+  [ExamCenterNames.Akhaltsikhe]: 'ახალციხე',
   [ExamCenterNames.Zugdidi]: 'ზუგდიდი',
   [ExamCenterNames.Sachxere]: 'საჩხერე',
   [ExamCenterNames.Poti]: 'ფოთი',
