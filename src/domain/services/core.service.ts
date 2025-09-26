@@ -63,7 +63,7 @@ export class CoreService {
   }
 
   private formatMessage(examCenterName: string, examDates: ExamDate[]): string {
-    let message = `${examCenterName}-ს საგამოცდო დროები 🚘 🚙  \n`;
+    let message = `${examCenterName}-ს საგამოცდო დროები 🚘  \n`;
 
     for (const examDate of examDates) {
       const { DateInGeorgian } = formatDate(examDate.date);
@@ -83,7 +83,7 @@ export class CoreService {
     message +=
       '\n დაჯავშნე გამოცდა - https://my.sa.gov.ge/drivinglicenses/practicalexam';
 
-    message += '\n წარმარებები 💚';
+    message += '\n წარმარებები 💚🚙';
 
     return message;
   }
