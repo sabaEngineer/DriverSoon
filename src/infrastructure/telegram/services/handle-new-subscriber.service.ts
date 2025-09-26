@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ExamCenterChannels } from '../enums';
+import { ExamCentersGeorgianNames } from 'src/domain/enum';
 
 @Injectable()
 export class HandleNewSubscriberService {
@@ -7,7 +8,7 @@ export class HandleNewSubscriberService {
 
   private buildKeyboard() {
     const buttons = ExamCenterChannels.map((channel) => ({
-      text: `${channel.examCenterName}`,
+      text: `${ExamCentersGeorgianNames[channel.examCenterName]}`,
       url: channel.joinUrl,
     }));
 
